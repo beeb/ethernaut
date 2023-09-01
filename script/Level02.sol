@@ -16,7 +16,7 @@ contract Attack is Script {
         vm.recordLogs();
         ethernaut.createLevelInstance(0x676e57FdBbd8e5fE1A7A3f4Bb1296dAC880aa639);
         Vm.Log[] memory entries = vm.getRecordedLogs();
-        address payable instanceAddress = payable(address(uint160(uint256(entries[0].topics[2]))));
+        address instanceAddress = address(uint160(uint256(entries[0].topics[2])));
         console2.log(instanceAddress);
         instance = Fallout(instanceAddress);
 

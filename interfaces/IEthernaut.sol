@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity 0.8.20;
 
 interface Ethernaut {
     event LevelCompletedLog(address indexed player, address indexed instance, address indexed level);

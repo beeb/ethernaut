@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.20;
+pragma solidity 0.8.20;
 
 import { Script, console2 } from "forge-std/Script.sol";
 import { Vm } from "forge-std/Vm.sol";
-import { Ethernaut } from "../interfaces/IEthernaut.sol";
-import { Fallout } from "../src/Level02.sol";
+import { Ethernaut } from "interfaces/IEthernaut.sol";
+import { Fallout } from "src/Level02.sol";
 
 contract Attack is Script {
     Ethernaut ethernaut = Ethernaut(vm.envAddress("ETHERNAUT"));

@@ -12,8 +12,6 @@ contract Attack is Script {
     Telephone instance;
     L04Attack attack;
 
-    // Run with `INSTANCE_ADDRESS=0x... ATTACK_ADDRESS=0x... forge script --broadcast script/Level03.sol:Attack` 10
-    // times
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);

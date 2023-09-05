@@ -9,8 +9,6 @@ import { L04Attack } from "src/Level04Attack.sol";
 
 contract Attack is Script {
     Ethernaut ethernaut = Ethernaut(vm.envAddress("ETHERNAUT"));
-    Telephone instance;
-    L04Attack attack;
 
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
@@ -20,8 +18,8 @@ contract Attack is Script {
         Vm.Log[] memory entries = vm.getRecordedLogs();
         address instanceAddress = address(uint160(uint256(entries[0].topics[2])));
         console2.log(instanceAddress);
-        instance = Telephone(instanceAddress);
-        attack = new L04Attack(instance);
+        Telephone instance = Telephone(instanceAddress);
+        L04Attack attack = new L04Attack(instance);
 
         attack.attack();
         console2.log(instance.owner());

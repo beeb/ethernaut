@@ -26,16 +26,13 @@ contract Deploy is Script {
 }
 
 contract Attack is Script {
-    CoinFlip instance;
-    L03Attack attack;
-
     // Run with `INSTANCE_ADDRESS=0x... ATTACK_ADDRESS=0x... forge script --broadcast script/Level03.sol:Attack` 10
     // times
     function run() public {
         uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
-        instance = CoinFlip(vm.envAddress("INSTANCE_ADDRESS"));
-        attack = L03Attack(vm.envAddress("ATTACK_ADDRESS"));
+        CoinFlip instance = CoinFlip(vm.envAddress("INSTANCE_ADDRESS"));
+        L03Attack attack = L03Attack(vm.envAddress("ATTACK_ADDRESS"));
 
         attack.attack();
         console2.log(instance.consecutiveWins());

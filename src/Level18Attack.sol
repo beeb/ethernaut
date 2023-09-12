@@ -11,7 +11,7 @@ contract L18Attack {
         // 60 0a - push 10 onto stack (length of return value = runtime code length)
         // 60 00 - push 0 onto stack (location of runtime code in memory)
         // f3 - return
-        bytes memory initCode = "\x60\x0a\x60\x0c\x60\x00\x39\x60\x0a\x60\x00\xf3";
+        bytes memory initCode = hex"600a600c600039600a6000f3";
         // Runtime code
         // 60 2a - push 42 onto stack
         // 60 1f - push 31 onto stack (location in memory)
@@ -19,7 +19,7 @@ contract L18Attack {
         // 60 20 - push 32 onto stack (lenght of return value)
         // 60 00 - push 0 onto stack (location of return value in memory)
         // f3 - return
-        bytes memory runtimeCode = "\x60\x2a\x60\x1f\x53\x60\x20\x60\x00\xf3";
+        bytes memory runtimeCode = hex"602a601f5360206000f3";
 
         bytes memory code = bytes.concat(initCode, runtimeCode);
 

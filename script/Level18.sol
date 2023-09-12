@@ -28,6 +28,9 @@ contract Attack is Script {
         }
         console2.log(size);
         instance.setSolver(fortyTwo);
+        (bool success, bytes memory value) = fortyTwo.call(abi.encodeWithSignature("whatIsTheMeaningOfLife()"));
+        require(success, "call failed");
+        require(uint256(bytes32(value)) == 42, "wrong answer");
 
         ethernaut.submitLevelInstance(instanceAddress);
         vm.stopBroadcast();

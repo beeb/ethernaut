@@ -1,0 +1,33 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.20;
+
+contract L18Attack {
+    function deploy() external returns (address) {
+        // Init code
+        // 60 0a - push 10 onto stack (length of runtime code)
+        // 60 0c - push 12 onto stack (position of runtime code in tx data)
+        // 60 00 - push 0 onto stack (location in memory)
+        // 39 - codecopy
+        // 60 0a - push 10 onto stack (length of return value = runtime code length)
+        // 60 00 - push 0 onto stack (location of runtime code in memory)
+        // f3 - return
+        bytes memory initCode = "\x60\x0a\x60\x0c\x60\x00\x39\x60\x0a\x60\x00\xf3";
+        // Runtime code
+        // 60 2a - push 42 onto stack
+        // 60 00 - push 0 onto stack (location in memory)
+        // 53 - sstore
+        // 60 20 - push 32 onto stack (lenght of return value)
+        // 60 00 - push 0 onto stack (location of return value in memory)
+        // f3 - return
+        bytes memory runtimeCode = "\x60\x2a\x60\x00\x53\x60\x20\x60\x00\xf3";
+
+        bytes memory code = bytes.concat(initCode, runtimeCode);
+
+        address addr;
+        assembly {
+            addr := create(0, add(code, 0x20), mload(code))
+        }
+        require(addr != address(0), "Failed to deploy contract");
+        return addr;
+    }
+}

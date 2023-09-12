@@ -15,7 +15,7 @@ contract L18Attack {
         // Runtime code
         // 60 2a - push 42 onto stack
         // 60 1f - push 31 onto stack (location in memory)
-        // 53 - mastore8
+        // 53 - mstore8
         // 60 20 - push 32 onto stack (lenght of return value)
         // 60 00 - push 0 onto stack (location of return value in memory)
         // f3 - return

@@ -3,7 +3,7 @@ pragma solidity 0.8.20;
 
 import { Script, console2 } from "forge-std/Script.sol";
 import { Vm } from "forge-std/Vm.sol";
-import { Ethernaut } from "interfaces/IEthernaut.sol";
+import { Ethernaut } from "src/interfaces/IEthernaut.sol";
 import { King } from "src/Level09.sol";
 import { L09Attack } from "src/Level09Attack.sol";
 

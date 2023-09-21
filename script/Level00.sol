@@ -3,8 +3,8 @@ pragma solidity 0.8.20;
 
 import { Script, console2 } from "forge-std/Script.sol";
 import { Vm } from "forge-std/Vm.sol";
-import { Ethernaut } from "interfaces/IEthernaut.sol";
-import { Instance } from "interfaces/ILevel00.sol";
+import { Ethernaut } from "src/interfaces/IEthernaut.sol";
+import { Instance } from "src/interfaces/ILevel00.sol";
 
 contract Attack is Script {
     Ethernaut ethernaut = Ethernaut(vm.envAddress("ETHERNAUT"));

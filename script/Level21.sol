@@ -20,7 +20,7 @@ contract Attack is Script {
         console2.log(instanceAddress);
         Shop instance = Shop(instanceAddress);
 
-        L21Attack attack = new L21Attack(instance); // sets the partner to itself
+        L21Attack attack = new L21Attack(instance);
         attack.attack();
 
         ethernaut.submitLevelInstance(instanceAddress);

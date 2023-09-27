@@ -21,9 +21,7 @@ contract Attack is Script {
         Shop instance = Shop(instanceAddress);
 
         L21Attack attack = new L21Attack(instance); // sets the partner to itself
-        attack.attack{ gas: 30000 }();
-        require(instance.isSold() == true, "Item not sold");
-        require(instance.price() == 0, "Price not hacked");
+        attack.attack();
 
         ethernaut.submitLevelInstance(instanceAddress);
         vm.stopBroadcast();

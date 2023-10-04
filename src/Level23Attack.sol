@@ -16,8 +16,8 @@ contract AttackToken is ERC20 {
         _approve(dexInstance, msg.sender, initialSupply); // we can get back tokens from the dex
     }
 
-    function approve(address owner, address spender, uint256 amount) public {
-        require(owner != _dex, "InvalidApprover");
-        super._approve(owner, spender, amount);
+    function approve(address _owner, address spender, uint256 amount) public {
+        require(_owner != _dex, "InvalidApprover");
+        super._approve(_owner, spender, amount);
     }
 }

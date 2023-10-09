@@ -22,10 +22,7 @@ contract Attack is Script {
 
         L18Attack attack = new L18Attack();
         address fortyTwo = attack.deploy();
-        uint256 size;
-        assembly {
-            size := extcodesize(fortyTwo)
-        }
+        uint256 size = fortyTwo.code.length;
         console2.log(size);
         instance.setSolver(fortyTwo);
         (bool success, bytes memory value) = fortyTwo.call(abi.encodeWithSignature("whatIsTheMeaningOfLife()"));

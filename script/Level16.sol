@@ -11,7 +11,7 @@ contract Attack is Script {
     Ethernaut ethernaut = Ethernaut(vm.envAddress("ETHERNAUT"));
 
     function run() public {
-        uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
+        uint256 deployerPrivateKey = uint256(vm.envBytes32("DEPLOYER_PRIVATE_KEY"));
         vm.startBroadcast(deployerPrivateKey);
         vm.recordLogs();
         ethernaut.createLevelInstance(0x7ae0655F0Ee1e7752D7C62493CEa1E69A810e2ed);

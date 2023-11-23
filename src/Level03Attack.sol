@@ -4,7 +4,8 @@ pragma solidity 0.8.20;
 import { CoinFlip } from "./Level03.sol";
 
 contract L03Attack {
-    uint256 constant FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+    uint256 constant FACTOR =
+        57_896_044_618_658_097_711_785_492_504_343_953_926_634_992_332_820_282_019_728_792_003_956_564_819_968;
     CoinFlip instance;
 
     constructor(CoinFlip _instance) {

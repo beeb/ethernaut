@@ -4,7 +4,8 @@ pragma solidity 0.8.20;
 contract CoinFlip {
     uint256 public consecutiveWins;
     uint256 lastHash;
-    uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+    uint256 FACTOR =
+        57_896_044_618_658_097_711_785_492_504_343_953_926_634_992_332_820_282_019_728_792_003_956_564_819_968;
 
     constructor() {
         consecutiveWins = 0;

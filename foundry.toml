@@ -8,6 +8,7 @@ solc_version = "0.8.20"
 line_length = 120
 bracket_spacing = true
 wrap_comments = true
+number_underscore = "thousands"
 
 [rpc_endpoints]
 sepolia = "${URL_ETH_SEPOLIA}"

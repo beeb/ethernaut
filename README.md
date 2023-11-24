@@ -9,7 +9,7 @@ Then, create a new script in the `script` directory and copy the existing exampl
 Finally, run the script with
 
 ```
-forge script --rpc-url sepolia script/Levelxx.sol --broadcast
+forge script --rpc-url sepolia script/Levelxx.s.sol --broadcast
 ```
 
 This will create the level instance, run your commands/transactions, and then finally submit the level.
